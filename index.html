@@ -162,7 +162,7 @@
           const userId = new Uint8Array(32);
           crypto.getRandomValues(userId);
 
-          const newCredential = await navigator.credentials.create({
+          const registrationOptions = {
             "publicKey": {
               "authenticatorSelection": {
                 "requireResidentKey": document.getElementById("reg-require-reg-resident-key").value === "true",
@@ -190,7 +190,10 @@
                 "id": userId,
               }
             }
-          })
+          };
+          
+          console.log("triggering registration with options", registrationOptions);
+          const newCredential = await navigator.credentials.create(registrationOptions)
           console.log("passkey created: ", newCredential);
           alert("Success! Passkey created.");
         } catch(e) {
@@ -211,7 +214,7 @@
           const userId = new Uint8Array(32);
           crypto.getRandomValues(userId);
           try {
-            const authentication = await navigator.credentials.get({
+            const authenticationOptions = {
               publicKey: {
                 challenge: challenge,
                 userVerification: document.getElementById("auth-user-verification").value
@@ -220,7 +223,9 @@
                   "id": window.location.hostname,
                   "name": "Passkey playground"
               },
-            });
+            };
+            console.log("triggering authentication with options", authenticationOptions);
+            const authentication = await navigator.credentials.get(authenticationOptions);
             console.log(authentication);
             alert("Successful passkey authentication");
           } catch(e) {
