@@ -203,7 +203,7 @@
       /**
        * Handler for authentication
        */
-      document.getElementById("use-passkeys").addEventListener("click", async function(e) {
+      document.getElementById("use-passkey").addEventListener("click", async function(e) {
         e.preventDefault();
         const challenge = new Uint8Array(32);
           crypto.getRandomValues(challenge);
