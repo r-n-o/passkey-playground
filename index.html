@@ -162,7 +162,6 @@
           const userId = new Uint8Array(32);
           crypto.getRandomValues(userId);
 
-          alert(document.getElementById("reg-require-reg-resident-key").value);
           const newCredential = await navigator.credentials.create({
             "publicKey": {
               "authenticatorSelection": {
