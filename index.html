@@ -85,10 +85,10 @@
       </div>
 
       <div class="form-row">
-        <label for="reg-require-reg-resident-key">
+        <label for="reg-require-resident-key">
           <code>requireResidentKey</code>
         </label>
-        <select id="reg-require-reg-resident-key">
+        <select id="reg-require-resident-key">
           <option value="false" selected> false (default)</option>
           <option value="true">true</option>
         </select>
@@ -113,6 +113,17 @@
           <option value="discouraged">discouraged</option>
           <option value="preferred" selected>preferred (default)</option>
           <option value="required">required</option>
+        </select>
+      </div>
+
+      <div class="form-row">
+        <label for="reg-authenticator-attachment">
+          <code>authenticatorAttachment</code>
+        </label>
+        <select id="reg-authenticator-attachment">
+          <option value="" selected>empty (default)</option>
+          <option value="platform">platform</option>
+          <option value="cross-platform">cross-platform</option>
         </select>
       </div>
       
@@ -165,9 +176,10 @@
           const registrationOptions = {
             "publicKey": {
               "authenticatorSelection": {
-                "requireResidentKey": document.getElementById("reg-require-reg-resident-key").value === "true",
+                "requireResidentKey": document.getElementById("reg-require-resident-key").value === "true",
                 "residentKey": document.getElementById("reg-resident-key").value,
                 "userVerification": document.getElementById("reg-user-verification").value,
+                "authenticatorAttachment": document.getElementById("reg-authenticator-attachment").value
               },
               "challenge": challenge,
               "pubKeyCredParams": [
